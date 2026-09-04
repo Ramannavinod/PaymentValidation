@@ -1,4 +1,3 @@
-
 package com.Validation.Pojo;
 
 import java.util.List;
@@ -13,29 +12,35 @@ import lombok.Data;
 @Data
 public class PaymentRequest {
 
-    @NotBlank(message = "Success URL is required")
+    @NotBlank(message = "SUCCESS_URL_REQUIRED")
     @Pattern(
         regexp = "https?://.*",
-        message = "Success URL must be a valid HTTP/HTTPS URL"
+        message = "SUCCESS_URL_INVALID"
     )
     private String successurl;
 
-    @NotBlank(message = "Cancel URL is required")
+
+    @NotBlank(message = "CANCEL_URL_REQUIRED")
     @Pattern(
         regexp = "https?://.*",
-        message = "Cancel URL must be a valid HTTP/HTTPS URL"
+        message = "CANCEL_URL_INVALID"
     )
     private String cancelurl;
 
-    @NotBlank(message = "Mode is required")
+
+    @NotBlank(message = "MODE_REQUIRED")
     @Pattern(
         regexp = "payment",
-        message = "Mode must be 'payment'"
+        message = "MODE_INVALID"
     )
     private String mode;
 
-    @NotEmpty(message = "At least one line item is required")
-    @Size(max = 100, message = "Maximum 100 line items are allowed")
+
+    @NotEmpty(message = "LINE_ITEMS_REQUIRED")
+    @Size(
+        max = 100,
+        message = "LINE_ITEMS_LIMIT"
+    )
     @Valid
     private List<LineItem> lineitems;
 }

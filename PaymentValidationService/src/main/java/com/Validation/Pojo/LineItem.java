@@ -1,4 +1,3 @@
-
 package com.Validation.Pojo;
 
 import java.math.BigDecimal;
@@ -13,24 +12,27 @@ import lombok.Data;
 @Data
 public class LineItem {
 
-    @NotNull(message = "Quantity is required")
-    @Positive(message = "Quantity must be greater than 0")
+    @NotNull(message = "QUANTITY_REQUIRED")
+    @Positive(message = "QUANTITY_INVALID")
     private Integer quantity;
 
-    @NotBlank(message = "Product name is required")
+
+    @NotBlank(message = "PRODUCT_NAME_REQUIRED")
     private String productName;
 
-    @NotBlank(message = "Currency is required")
+
+    @NotBlank(message = "CURRENCY_REQUIRED")
     @Pattern(
         regexp = "[A-Z]{3}",
-        message = "Currency must be a 3-letter uppercase currency code"
+        message = "CURRENCY_INVALID"
     )
     private String currency;
 
-    @NotNull(message = "Unit amount is required")
+
+    @NotNull(message = "UNIT_AMOUNT_REQUIRED")
     @DecimalMin(
         value = "0.01",
-        message = "Unit amount must be greater than 0"
+        message = "UNIT_AMOUNT_INVALID"
     )
     private BigDecimal unitAmount;
 }
